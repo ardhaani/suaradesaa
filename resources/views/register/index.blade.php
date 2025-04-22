@@ -1,78 +1,73 @@
-<section class="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-  <div class="w-full max-w-xl bg-white p-8 rounded-xl shadow-lg">
-    <h2 class="text-3xl font-bold text-center mb-6">Registrasi</h2>
+@extends('layouts.main')
+@section('container')
 
-    <form action="/register" method="POST" class="space-y-4">
+<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $("#tgl_lahir").datepicker({
+      onSelect: function(value, ui) {
+        var today = new Date(),
+          age = today.getFullYear() - ui.selectedYear;
+        $('#umur').val(age);
+      },
+      dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: "c-100:c+0"
+    });
+  });
+</script>
+
+<section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #e6f0ff;">
+  <div class="auth-card">
+    <h2 class="text-center auth-title">Selamat Datang di <span style="color:#0072ff;">SuaraDesa</span></h2>
+    <p class="auth-subtitle">Buat akun untuk mulai laporkan dan pantau pembangunan desa!</p>
+
+    <form action="/register" method="POST">
       @csrf
 
-      <div>
-        <label for="name" class="block mb-1 font-medium">Nama</label>
-        <input type="text" id="name" name="name" value="{{ old('name') }}"
-          class="w-full px-4 py-2 border rounded-lg @error('name') border-red-500 @enderror" required>
-        @error('name')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="text" name="name" class="form-control auth-input @error('name') is-invalid @enderror" placeholder="Nama" value="{{ old('name') }}" required>
+        @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="nik" class="block mb-1 font-medium">NIK</label>
-        <input type="number" id="nik" name="nik" value="{{ old('nik') }}"
-          class="w-full px-4 py-2 border rounded-lg @error('nik') border-red-500 @enderror" required>
-        @error('nik')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="number" name="nik" class="form-control auth-input @error('nik') is-invalid @enderror" placeholder="NIK" value="{{ old('nik') }}" required>
+        @error('nik')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="tgl_lahir" class="block mb-1 font-medium">Tanggal Lahir</label>
-        <input type="text" id="tgl_lahir" name="tgl_lahir"
-          class="w-full px-4 py-2 border rounded-lg @error('tgl_lahir') border-red-500 @enderror" required>
-        @error('tgl_lahir')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control auth-input @error('tgl_lahir') is-invalid @enderror" placeholder="Tanggal Lahir" required>
+        @error('tgl_lahir')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="umur" class="block mb-1 font-medium">Umur</label>
-        <input type="text" id="umur" name="umur" readonly
-          class="w-full px-4 py-2 border rounded-lg bg-gray-100 @error('umur') border-red-500 @enderror" required>
-        @error('umur')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="text" name="umur" id="umur" class="form-control auth-input @error('umur') is-invalid @enderror" placeholder="Umur" readonly required>
+        @error('umur')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="username" class="block mb-1 font-medium">Username</label>
-        <input type="text" id="username" name="username" value="{{ old('username') }}"
-          class="w-full px-4 py-2 border rounded-lg @error('username') border-red-500 @enderror" required>
-        @error('username')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="text" name="username" class="form-control auth-input @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}" required>
+        @error('username')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="email" class="block mb-1 font-medium">Email</label>
-        <input type="email" id="email" name="email" value="{{ old('email') }}"
-          class="w-full px-4 py-2 border rounded-lg @error('email') border-red-500 @enderror" required>
-        @error('email')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control auth-input @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" required>
+        @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <div>
-        <label for="password" class="block mb-1 font-medium">Password</label>
-        <input type="password" id="password" name="password"
-          class="w-full px-4 py-2 border rounded-lg @error('password') border-red-500 @enderror" required>
-        @error('password')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
+      <div class="mb-4">
+        <input type="password" name="password" class="form-control auth-input @error('password') is-invalid @enderror" placeholder="Password" required>
+        @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-        Register
-      </button>
-
-      <p class="text-sm text-center mt-2">Sudah punya akun? <a href="/login" class="text-blue-600 hover:underline">Login Sekarang!</a></p>
+      <button type="submit" class="btn btn-gradient">Daftar</button>
     </form>
+
+    <div class="auth-footer mt-3">
+      Sudah punya akun? <a href="/login">Login Sekarang!</a>
+    </div>
   </div>
 </section>
+
+@endsection
