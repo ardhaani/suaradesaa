@@ -64,9 +64,6 @@
       <div class="text-center">
         <button type="submit" class="btn btn-gradient">Daftar</button>
       </div>
-      
-      <button type="submit" class="btn btn-gradient">Daftar</button>
-    </form>
 
     <div class="auth-footer mt-3">
       Sudah punya akun? <a href="/login">Login Sekarang!</a>
