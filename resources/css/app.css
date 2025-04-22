@@ -1,6 +1,15 @@
 body {
-  background-color: #e6f0ff;
+  background-color: #dbeeff; /* Full blue background seperti login */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+section.vh-100 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-card {
@@ -9,8 +18,7 @@ body {
   border-radius: 25px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 550px;
-  margin: auto;
+  max-width: 500px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -62,7 +70,7 @@ body {
 .auth-footer {
   text-align: center;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .auth-footer a {

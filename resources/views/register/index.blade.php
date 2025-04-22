@@ -61,6 +61,10 @@
         @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
+      <div class="text-center">
+        <button type="submit" class="btn btn-gradient">Daftar</button>
+      </div>
+      
       <button type="submit" class="btn btn-gradient">Daftar</button>
     </form>
 
