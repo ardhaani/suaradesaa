@@ -23,51 +23,59 @@
 <style>
   body {
     background-color: #e6f0ff;
+    font-family: 'Segoe UI', sans-serif;
   }
 
-  .form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding-top: 50px;
+  .card-box {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 420px;
+    padding: 40px;
+    margin: 60px auto;
+    text-align: center;
   }
 
   .form-control {
-    border-radius: 10px;
-    padding: 12px;
+    border-radius: 12px;
+    padding: 12px 16px;
     font-size: 1rem;
     margin-bottom: 16px;
+    border: 1px solid #ccc;
   }
 
-  .btn-register {
-    background-color: #0072ff;
+  .btn-gradient {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
     color: white;
     border: none;
-    padding: 12px;
+    padding: 14px;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 30px;
     font-weight: bold;
-    transition: background 0.3s;
+    font-size: 1rem;
+    transition: opacity 0.3s;
   }
 
-  .btn-register:hover {
-    background-color: #005cd6;
+  .btn-gradient:hover {
+    opacity: 0.9;
   }
 
-  .text-center a {
+  .text-blue {
     color: #0072ff;
-    font-weight: 500;
+    font-weight: 600;
+    text-decoration: none;
   }
 
-  .text-center a:hover {
+  .text-blue:hover {
     text-decoration: underline;
   }
 </style>
 
-<div class="form-container text-center">
-  <h2><strong>Selamat Datang di <span style="color:#0072ff;">SuaraDesa</span></strong></h2>
+<div class="card-box">
+  <h2><strong>Selamat Datang di <span class="text-blue">SuaraDesa</span></strong></h2>
   <p>Buat akun untuk mulai laporkan dan pantau pembangunan desa!</p>
 
-  <form action="/register" method="POST" class="text-start">
+  <form action="/register" method="POST" class="text-start mt-4">
     @csrf
 
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama" value="{{ old('name') }}" required>
@@ -91,11 +99,11 @@
     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
     @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
 
-    <button type="submit" class="btn-register mt-2">Daftar</button>
+    <button type="submit" class="btn-gradient mt-2">Daftar</button>
   </form>
 
-  <div class="text-center mt-3">
-    Sudah punya akun? <a href="/login">Login Sekarang!</a>
+  <div class="mt-4">
+    Sudah punya akun? <a href="/login" class="text-blue">Login Sekarang!</a>
   </div>
 </div>
 
