@@ -72,7 +72,7 @@
 </style>
 
 <div class="card-box">
-  <h2><strong>Selamat Datang di <span class="text-blue" style="font-weight: 800;">SuaraDesa</span></strong></h2>
+  <h2><strong>Selamat Datang di <span class="text-blue" style="font-weight: 600;">SuaraDesa</span></strong></h2>
   <p>Buat akun untuk mulai laporkan dan pantau pembangunan desa!</p>
 
   <form action="/register" method="POST" class="text-start mt-4">
