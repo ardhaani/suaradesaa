@@ -26,8 +26,8 @@
       <td>{{ $post->judul }}</td>
       <td>{{ $post->user->name }}</td>
       <td>
-        @if ($post->gambar)
-          <img class="myImg" src="{{ asset('storage/' . $post->gambar) }}" alt="{{ $post->judul }}" width="150" style="cursor:pointer;">
+        @if ($post->image)
+          <img class="myImg" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->judul }}" width="150" height="auto" style="cursor:pointer;">
         @else
           Gambar tidak ada
         @endif
@@ -49,9 +49,8 @@
 </table>
 
 <!-- Modal untuk zoom gambar -->
-<div id="myModal" class="modal" style="display:none; position:fixed; z-index:9999; padding-top:60px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.9);">
-  <span style="position:absolute; top:15px; right:35px; color:#f1f1f1; font-size:40px; font-weight:bold; cursor:pointer;" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="img01" style="margin:auto; display:block; width:80%; max-width:700px;">
+<div id="myModal" class="modal" style="display:none;">
+  <img class="modal-content" id="img01">
 </div>
 
 <!-- Modal Action -->
@@ -109,7 +108,7 @@
     });
   });
 
-  function closeModal() {
+  modal.onclick = function() {
     modal.style.display = "none";
   }
 </script>
