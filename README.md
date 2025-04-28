@@ -10,7 +10,7 @@ Website **SuaraDesa** berfungsi sebagai media layanan pengaduan masyarakat desa,
 - Mengirimkan laporan atau keluhan secara online.
 - Memberikan kemudahan bagi pihak desa untuk mengelola, menindaklanjuti, dan memberikan respon atas setiap pengaduan.
 
-## Anggota Kelompok 8
+## Anggota Kelompok 7
 | No. | Nama | NIM |
 |:---:|:-----|:---:|
 | 1 | Amaliya Izzah Ramadhani | 23050974079 |
