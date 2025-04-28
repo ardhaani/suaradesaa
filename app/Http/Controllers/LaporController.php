@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Status;
 use App\Models\Comment;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Komentar;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\Komentar;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class LaporController extends Controller
@@ -23,7 +23,7 @@ class LaporController extends Controller
         return view('index', [
             'title' => 'Lapor',
             'statuses' => Status::all(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -33,76 +33,59 @@ class LaporController extends Controller
     public function create()
     {
         return view('index', [
-            'statuses' => Status::all()
+            'title' => 'Lapor',
+            'statuses' => Status::all(),
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in storage.
      */
     public function store(Request $request)
     {
-        $isidata = $request->validate([
+        $validated = $request->validate([
             'judul' => 'required|max:255',
             'isi' => 'required',
-            'category_id' => 'required',
-            'image' => 'image|file|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|file|max:2048',
         ]);
 
-        if ($request->file('image')) {
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = $image->hashName();
-            $image->storeAs('images', $imageName);
-            $isidata['image'] = $imageName;
+            $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads', $imageName, 'public');
+            $validated['image'] = $imageName;
         }
 
-        $isidata['user_id'] = auth()->user()->id;
-        $isidata['excerpt'] = Str::limit(strip_tags($request->isi), 50);
+        $validated['user_id'] = auth()->id();
+        $validated['excerpt'] = Str::limit(strip_tags($validated['isi']), 50);
 
-        Post::create($isidata);
+        Post::create($validated);
 
-        return redirect('/history')->with('success', 'Aduan telah diposting');
+        return redirect('/history')->with('success', 'Aduan telah diposting.');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post along with its comments.
      */
     public function show(Post $post)
     {
-        $comment = Comment::where('post_id', $post->id)->latest()->get();
+        $comments = Comment::where('post_id', $post->id)->latest()->get();
 
         return view('admin.show', [
-            'title' => 'Show',
+            'title' => 'Detail Laporan',
             'post' => $post,
-            'comment' => $comment
+            'comments' => $comments,
         ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment from storage.
      */
     public function destroy($id)
     {
-        $comment = Comment::where('id', $id)->first();
-        if ($comment) {
-            $comment->delete();
-        }
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
 
         return redirect()->back()->with('success', 'Komentar berhasil dihapus!');
     }
@@ -110,25 +93,34 @@ class LaporController extends Controller
     /**
      * Generate slug from title.
      */
-    public function checkSlug(Request $req)
+    public function checkSlug(Request $request)
     {
-        $slug = SlugService::createSlug(Post::class, 'slug', $req->judul);
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
+
         return response()->json(['slug' => $slug]);
     }
 
     /**
-     * Store new comment and send email notification.
+     * Store new comment and send email notification to post owner.
      */
     public function komen(Request $request, User $user, Post $post)
     {
-        $find = Post::find($request->post_id);
-        $users = $find->user->email ?? null;
+        $request->validate([
+            'isi' => 'required|string|max:1000',
+            'post_id' => 'required|exists:posts,id',
+        ]);
 
-        $request->request->add(['user_id' => auth()->user()->id]);
-        $komentar = Comment::create($request->all());
+        $post = Post::findOrFail($request->post_id);
+        $recipientEmail = $post->user->email ?? null;
 
-        if ($users) {
-            Mail::to($users)->send(new Komentar($komentar));
+        $comment = Comment::create([
+            'user_id' => auth()->id(),
+            'post_id' => $post->id,
+            'isi' => $request->isi,
+        ]);
+
+        if ($recipientEmail) {
+            Mail::to($recipientEmail)->send(new Komentar($comment));
         }
 
         return redirect()->back()->with('success', 'Komentar berhasil ditambahkan!');

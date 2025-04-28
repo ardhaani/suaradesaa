@@ -104,7 +104,7 @@
                 <td>{{ $post->judul }}</td>
                 <td>
                   @if($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="Gambar Laporan" class="myImg" style="max-width: 100px; height: auto;">
+                    <img src="{{ asset('storage/uploads/' . $post->image) }}" alt="{{ $post->judul }}" class="myImg" style="max-width: 100px; height: auto;">
                   @else
                     <small><i>Tidak ada gambar</i></small>
                   @endif
@@ -129,13 +129,14 @@
 <script>
   var modal = document.getElementById('myModal');
   var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
   var images = document.querySelectorAll('.myImg');
 
   images.forEach(function(img) {
     img.addEventListener('click', function(){
       modal.style.display = "block";
       modalImg.src = this.src;
-      modalImg.alt = this.alt;
+      captionText.innerHTML = this.alt;
     });
   });
 
