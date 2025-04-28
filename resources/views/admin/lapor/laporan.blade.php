@@ -104,7 +104,8 @@
                 <td>{{ $post->judul }}</td>
                 <td>
                   @if($post->image)
-                    <img src="{{ asset('storage/uploads/' . $post->image) }}" alt="{{ $post->judul }}" class="myImg" style="max-width: 100px; height: auto;">
+                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->judul }}" class="myImg" style="max-width: 100px; height: auto;">
+
                   @else
                     <small><i>Tidak ada gambar</i></small>
                   @endif
