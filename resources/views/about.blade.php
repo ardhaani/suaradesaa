@@ -24,6 +24,52 @@
     <p> Tentu saja, kami memahami bahwa pengaduan masyarakat bukanlah solusi satu-satunya dalam menyelesaikan masalah. Namun, pengaduan masyarakat adalah langkah awal yang penting, yang bisa membantu kita membangun masyarakat yang lebih adil, aman, dan nyaman. Bersama-sama, mari kita berkomitmen untuk memperbaiki situasi yang tidak ideal dan memberikan dampak positif bagi masyarakat kita.</p>    
 </article>
 
+<section class="mb-5">
+    <h2 class="text-center fw-bold mt-5">Kelompok 7 </h2>
+    <div class="d-flex align-items-center justify-content-center">
+        <hr class="border-secondary w-25">
+    </div>
+    <div class="row justify-content-center text-center mt-4">
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ asset('img/anggota1.jpg') }}" class="card-img-top" alt="Anggota 1">
+                <div class="card-body">
+                    <h5 class="card-title">Amaliya Izzah Ramadhani</h5>
+                    <p class="card-text">23050974079</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ asset('img/anggota2.jpg') }}" class="card-img-top" alt="Anggota 2">
+                <div class="card-body">
+                    <h5 class="card-title">Aisyah Lintang Zakiyya Arby</h5>
+                    <p class="card-text">23050974095</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ asset('img/anggota3.jpg') }}" class="card-img-top" alt="Anggota 3">
+                <div class="card-body">
+                    <h5 class="card-title">Nandana Ardhani</h5>
+                    <p class="card-text">23050974113</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ asset('img/anggota4.jpg') }}" class="card-img-top" alt="Anggota 4">
+                <div class="card-body">
+                    <h5 class="card-title">Cintya Ratna Ayuni</h5>
+                    <p class="card-text">23050974115</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 @endsection
 
 @section('footer')
