@@ -25,7 +25,7 @@
 </article>
 
 <section class="mb-5">
-    <h2 class="text-center fw-bold mt-5">Kelompok 7 </h2>
+    <h2 class="text-center fw-bold mt-5">Get to Know Developers K7 </h2>
     <div class="d-flex align-items-center justify-content-center">
         <hr class="border-secondary w-25">
     </div>
