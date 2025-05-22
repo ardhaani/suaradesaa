@@ -32,7 +32,7 @@
     <div class="row justify-content-center text-center mt-4">
         <div class="col-md-3 mb-3">
             <div class="card h-100 shadow-sm">
-                <img src="{{ asset('img/anggota1.jpg') }}" class="card-img-top" alt="Anggota 1">
+                <img src="{{ asset('img/emy.jpg') }}" class="card-img-top" alt="Anggota 1">
                 <div class="card-body">
                     <h5 class="card-title">Amaliya Izzah Ramadhani</h5>
                     <p class="card-text">23050974079</p>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <div class="card h-100 shadow-sm">
-                <img src="{{ asset('img/anggota2.jpg') }}" class="card-img-top" alt="Anggota 2">
+                <img src="{{ asset('img/alin.jpg') }}" class="card-img-top" alt="Anggota 2">
                 <div class="card-body">
                     <h5 class="card-title">Aisyah Lintang Zakiyya Arby</h5>
                     <p class="card-text">23050974095</p>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <div class="card h-100 shadow-sm">
-                <img src="{{ asset('img/anggota3.jpg') }}" class="card-img-top" alt="Anggota 3">
+                <img src="{{ asset('img/PP SSO.jpg') }}" class="card-img-top" alt="Anggota 3">
                 <div class="card-body">
                     <h5 class="card-title">Nandana Ardhani</h5>
                     <p class="card-text">23050974113</p>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <div class="card h-100 shadow-sm">
-                <img src="{{ asset('img/anggota4.jpg') }}" class="card-img-top" alt="Anggota 4">
+                <img src="{{ asset('img/cintya.jpg') }}" class="card-img-top" alt="Anggota 4">
                 <div class="card-body">
                     <h5 class="card-title">Cintya Ratna Ayuni</h5>
                     <p class="card-text">23050974115</p>
